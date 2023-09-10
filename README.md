@@ -1,1 +1,1 @@
-# course 1 summer practic (2023)
+3 term, OS course
