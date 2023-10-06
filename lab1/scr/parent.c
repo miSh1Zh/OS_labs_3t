@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+/*
 int end_input(int c){
     return (c == EOF || c == '\n');
 }
@@ -24,6 +25,7 @@ void get_filename(char* name){
         
     }while(!end_input(c));
 }
+*/
 
 int main(int argc, char* argv[]){
 
@@ -59,32 +61,30 @@ int main(int argc, char* argv[]){
     }
 
     pid_t pid = fork();
-
     if (pid == -1) {
         perror("\nfork: Here is a problem\n");
         _exit(EXIT_FAILURE);
-    }else{
-        if(pid == 0){ //child
-            close (pipe_fd[0]);
-            dup2(fd, STDIN_FILENO);
-            dup2(pipe_fd[1], STDERR_FILENO);
-            char* args[] = {"./child", NULL};
-            if (execv(args[0], args) == -1) {
-                fprintf(stderr, "Unable to exec\n");
+    }
+    else if(pid == 0){ //child
+        close(pipe_fd[0]);
+        dup2(fd, STDIN_FILENO);
+        dup2(pipe_fd[1], STDOUT_FILENO);
+        char* args[] = {"./child", NULL};
+        if (execv(args[0], args) == -1){
+            fprintf(stderr, "Unable to exec\n");
+            _exit(EXIT_FAILURE);
+        }
+    }else{ //parent
+        close(pipe_fd[1]);
+        wait(0);
+        int result = 0;
+        while(read(pipe_fd[0], &result, sizeof(int))){
+            if(result == -1){
+                printf("Division by zero\n");
                 _exit(EXIT_FAILURE);
             }
-        }else{ //parent
-            close(pipe_fd[1]);
-            wait(0);
-            char ch_status[17];
-            while(read(pipe_fd[0], ch_status, 1)){
-                if(strcmp(ch_status, "") != 0){
-                    printf("\nDivision by zero\n");
-                    _exit(EXIT_FAILURE);
-                }
-            }
+            else printf("%d\n", result);
         }
     }
-
     return 0;
 }
