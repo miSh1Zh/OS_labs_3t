@@ -27,13 +27,23 @@ void get_filename(char* name){
 }
 */
 
-int main(int argc, char* argv[]){
+//int main(int argc, char* argv[]){
 
+int main(){
+
+    /*/
     if (argc != 2) {
         perror("\nError: no filename\n");
         exit(EXIT_FAILURE);
     }
+    /*/
 
+    char* filename;
+
+    if(!scanf("%s", filename)){
+        perror("\nScan file problem!\n");
+        _exit(EXIT_FAILURE);
+    }
 
     /* //I tried
     char* filename = malloc(sizeof(char));
@@ -47,8 +57,8 @@ int main(int argc, char* argv[]){
     */
     //printf("\nfilename: %s\n", filename);  
 
-    int fd = open(argv[1], O_RDONLY);
-    //int fd = open(filename, O_RDONLY);
+    //int fd = open(argv[1], O_RDONLY);
+    int fd = open(filename, O_RDONLY);
     if(fd == -1){
         perror("\nCan't open file\n");
         _exit(EXIT_FAILURE);
