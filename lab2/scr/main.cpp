@@ -24,10 +24,7 @@ void printArray(vector<int>& arr)
     printf("\n");
 }
 
-// This function sorts array from left
-// index to to right index which is
-// of size atmost RUN
-// void* insertionSort(void* param)
+// This function sorts array from left index to to right index which is of size atmost RUN void* insertionSort(void* param)
 void insertionSort(int left, int right)
 {
     for (int i = left + 1; i <= right; i++) {
@@ -40,6 +37,7 @@ void insertionSort(int left, int right)
         globe_vector[j + 1] = temp;
     }
 }
+// for threading
 void* inS(void* part)
 {
     int left = ((partition*)part)->first;
@@ -52,8 +50,7 @@ void* inS(void* part)
 // Merge function merges the sorted runs
 void merge(int l, int m, int r)
 {
-    // Original array is broken in two
-    // parts left and right array
+    // Original array is broken in two parts left and right array
     int len1 = m - l + 1, len2 = r - m;
     int left[len1], right[len2];
     for (int i = 0; i < len1; i++)
@@ -92,7 +89,7 @@ void merge(int l, int m, int r)
         j++;
     }
 }
-
+// for threading
 void* mr(void* part){
     int l = ((triple_partition*)part)->l;
     int m = ((triple_partition*)part)->m;
@@ -102,71 +99,66 @@ void* mr(void* part){
     return 0;
 }
 
-// Iterative Timsort function to sort the
-// array[0...n-1] (similar to merge sort)
+// Iterative Timsort function to sort the array[0...n-1] (similar to merge sort)
 void timSort(int thread_count)
 {
     int n = globe_vector.size();
-
-    vector<partition> to_take(0);
-
-    // Sort individual subarrays of size RUN
-    for (int i = 0; i < n; i += RUN){
-        // insertionSort(i, min((i + RUN - 1), (n - 1)));
-
-        to_take.push_back(partition(i, min((i + RUN - 1), (n - 1))));
-
-        // cout << "\nProcess: "; printArray(globe_vector); cout << '\n';
-    }
-
     pthread_t tid[thread_count];
-    int count = 0;
+
+
+    // Partition individual subarrays of size RUN
+    vector<partition> to_take(0);
+    for (int i = 0; i < n; i += RUN){
+        to_take.push_back(partition(i, min((i + RUN - 1), (n - 1))));
+    }
 
     int n_parts = to_take.size();
-    for(int i = 0; i < n_parts; ++i){
-        if(count == thread_count){
-            while(count){
-                pthread_join(tid[thread_count - count], NULL);
-                count--;
-            }
+    int ind = 0;
+    while(n_parts > 0){
+        for(int j = 0; j < min(n_parts, thread_count); ++j){
+            pthread_create(&tid[j%thread_count], NULL, inS, &(to_take[ind%to_take.size()]));
+            ++ind;
         }
-        pthread_create(&tid[count], NULL, inS, &(to_take[i]));
-        ++count;
+        for(int k = 0; k < min(n_parts, thread_count); ++k){
+            pthread_join(tid[k%thread_count], NULL);
+        }
+        n_parts-=thread_count;
     }
-    for(int i = 0; i < count; ++i){
-        pthread_join(tid[i], NULL);
-    }
-    count = 0;
 
-    // Start merging from size RUN (or 32).
-    // It will merge
-    // to form size 64, then 128, 256
-    // and so on ....
+    // Start merging from size RUN (or 32). It will merge to form size 64, then 128, 256 and so on ....
+    vector<triple_partition> to_merge;
     for (int size = RUN; size < n; size = 2 * size) {
 
-        // pick starting point of
-        // left sub array. We
-        // are going to merge
-        // arr[left..left+size-1]
-        // and arr[left+size, left+2*size-1]
-        // After every merge, we
-        // increase left by 2*size
+        // pick starting point of left sub array. We are going to merge arr[left..left+size-1] and arr[left+size, left+2*size-1] After every merge, we increase left by 2*size
         for (int left = 0; left < n; left += 2 * size) {
 
-            // Find ending point of
-            // left sub array
-            // mid+1 is starting point
-            // of right sub array
+            // Find ending point of left sub array mid+1 is starting point of right sub array
             int mid = left + size - 1;
             int right = min((left + 2 * size - 1), (n - 1));
 
-            // merge sub array arr[left.....mid] &
-            // arr[mid+1....right]
+            // merge sub array arr[left.....mid] & arr[mid+1....right]
             if (mid < right){
                 merge(left, mid, right);
+                // triple_partition parts;
+                // parts.l = left;
+                // parts.m = mid;
+                // parts.r = right;
+                // to_merge.push_back(parts);
             }
         }
     }
+    // n_parts = to_merge.size();
+    // ind = 0;
+    // while(n_parts > 0){
+    //     for(int j = 0; j < min(n_parts, thread_count); ++j){
+    //         pthread_create(&tid[j%thread_count], NULL, mr, &(to_merge[ind%to_merge.size()]));
+    //         ++ind;
+    //     }
+    //     for(int k = 0; k < min(n_parts, thread_count); ++k){
+    //         pthread_join(tid[k%thread_count], NULL);
+    //     }
+    //     n_parts-=thread_count;
+    // }
 }
 
 
@@ -177,8 +169,8 @@ int main(int argc, char* argv[])
         perror("\nError: no threads to use\n");
         exit(EXIT_FAILURE);
     }
-    if(atoi(argv[1]) < 1){
-        perror("\nError: Wrong count (try  'integer'>=1)\n");
+    if(atoi(argv[1]) < 1 ){
+        perror("\nError: Wrong count (try 4>='integer'>=1)\n");
         exit(EXIT_FAILURE);
     }
     const int thread_count = atoi(argv[1]);
@@ -194,8 +186,8 @@ int main(int argc, char* argv[])
     timSort(thread_count);
 
     // Results
-    // printf("\nAfter Sorting globe Array is: ");
-    // printArray(globe_vector);
+    printf("\nAfter Sorting globe Array is: ");
+    printArray(globe_vector);
     printf("\nArray size was %d\n", globe_vector.size());
     return 0;
 }
