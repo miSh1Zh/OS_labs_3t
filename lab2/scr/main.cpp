@@ -1,118 +1,142 @@
 #include <iostream>
 #include <vector>
-#include <pthread.h>
 
 using namespace std;
 
 const int RUN = 32;
 
-// ## What is TimSort? 
+vector<int> globe_vector(0);
+pthread_mutex_t mut;
 
-// Let’s consider the following array as an example: arr[] = {4, 2, 8, 6, 1, 5, 9, 3, 7}.
-
-// Step 1: Define the size of the run
-
-// Minimum run size: 32 (we’ll ignore this step since our array is small)
-// Step 2: Divide the array into runs
-
-// In this step, we’ll use insertion sort to sort the small subsequences (runs) within the array.
-// The initial array: [4, 2, 8, 6, 1, 5, 9, 3, 7]
-// No initial runs are present, so we’ll create runs using insertion sort.
-// Sorted runs: [2, 4], [6, 8], [1, 5, 9], [3, 7]
-// Updated array: [2, 4, 6, 8, 1, 5, 9, 3, 7]
-// Step 3: Merge the runs
-
-// In this step, we’ll merge the sorted runs using a modified merge sort algorithm.
-// Merge the runs until the entire array is sorted.
-// Merged runs: [2, 4, 6, 8], [1, 3, 5, 7, 9]
-// Updated array: [2, 4, 6, 8, 1, 3, 5, 7, 9]
-// Step 4: Adjust the run size
-
-// After each merge operation, we double the size of the run until it exceeds the length of the array.
-// The run size doubles: 32, 64, 128 (we’ll ignore this step since our array is small)
-// Step 5: Continue merging
-
-// Repeat the merging process until the entire array is sorted.
-// Final merged run: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-// The final sorted array is [1, 2, 3, 4, 5, 6, 7, 8, 9].
-
-// C++ program to perform TimSort.
+using partition = pair<int, int>;
+typedef struct{
+    int l;
+    int m;
+    int r;
+}triple_partition;
 
 
+// Utility function to print the Array
+void printArray(vector<int>& arr)
+{
+    for (int elem : arr)
+        printf("%d ", elem);
+    printf("\n");
+}
 
 // This function sorts array from left
 // index to to right index which is
 // of size atmost RUN
-void insertionSort(vector<int>& arr, int left, int right)
+// void* insertionSort(void* param)
+void insertionSort(int left, int right)
 {
     for (int i = left + 1; i <= right; i++) {
-        int temp = arr[i];
+        int temp = globe_vector[i];
         int j = i - 1;
-        while (j >= left && arr[j] > temp) {
-            arr[j + 1] = arr[j];
+        while (j >= left && globe_vector[j] > temp) {
+            globe_vector[j + 1] = globe_vector[j];
             j--;
         }
-        arr[j + 1] = temp;
+        globe_vector[j + 1] = temp;
     }
+}
+void* inS(void* part)
+{
+    int left = ((partition*)part)->first;
+    int right = ((partition*)part)->second;
+    insertionSort(left, right);
+    pthread_exit(0);
+    return 0;
 }
 
 // Merge function merges the sorted runs
-void merge(vector<int>& arr, int l, int m, int r)
+void merge(int l, int m, int r)
 {
-
     // Original array is broken in two
     // parts left and right array
     int len1 = m - l + 1, len2 = r - m;
     int left[len1], right[len2];
     for (int i = 0; i < len1; i++)
-        left[i] = arr[l + i];
+        left[i] = globe_vector[l + i];
     for (int i = 0; i < len2; i++)
-        right[i] = arr[m + 1 + i];
+        right[i] = globe_vector[m + 1 + i];
 
     int i = 0;
     int j = 0;
     int k = l;
 
-    // After comparing, we
-    // merge those two array
-    // in larger sub array
+    // After comparing, we merge those two array in larger sub array
     while (i < len1 && j < len2) {
         if (left[i] <= right[j]) {
-            arr[k] = left[i];
+            globe_vector[k] = left[i];
             i++;
         }
         else {
-            arr[k] = right[j];
+            globe_vector[k] = right[j];
             j++;
         }
         k++;
     }
 
-    // Copy remaining elements of
-    // left, if any
+    // Copy remaining elements of left, if any
     while (i < len1) {
-        arr[k] = left[i];
+        globe_vector[k] = left[i];
         k++;
         i++;
     }
 
-    // Copy remaining element of
-    // right, if any
+    // Copy remaining element of right, if any
     while (j < len2) {
-        arr[k] = right[j];
+        globe_vector[k] = right[j];
         k++;
         j++;
     }
 }
 
+void* mr(void* part){
+    int l = ((triple_partition*)part)->l;
+    int m = ((triple_partition*)part)->m;
+    int r = ((triple_partition*)part)->r;
+    merge(l, m, r);
+    pthread_exit(0);
+    return 0;
+}
+
 // Iterative Timsort function to sort the
 // array[0...n-1] (similar to merge sort)
-void timSort(vector<int>& arr, int t)
+void timSort(int thread_count)
 {
-    int n = arr.size();
+    int n = globe_vector.size();
+
+    vector<partition> to_take(0);
+
     // Sort individual subarrays of size RUN
-    for (int i = 0; i < n; i += RUN)
-        insertionSort(arr, i, min((i + RUN - 1), (n - 1)));
+    for (int i = 0; i < n; i += RUN){
+        // insertionSort(i, min((i + RUN - 1), (n - 1)));
+
+        to_take.push_back(partition(i, min((i + RUN - 1), (n - 1))));
+
+        // cout << "\nProcess: "; printArray(globe_vector); cout << '\n';
+    }
+
+    pthread_t tid[thread_count];
+    int count = 0;
+
+    int n_parts = to_take.size();
+    for(int i = 0; i < n_parts; ++i){
+        if(count == thread_count){
+            while(count){
+                pthread_join(tid[thread_count - count], NULL);
+                count--;
+            }
+        }
+        pthread_create(&tid[count], NULL, inS, &(to_take[i]));
+        ++count;
+    }
+    for(int i = 0; i < count; ++i){
+        pthread_join(tid[i], NULL);
+    }
+    count = 0;
 
     // Start merging from size RUN (or 32).
     // It will merge
@@ -138,20 +162,12 @@ void timSort(vector<int>& arr, int t)
 
             // merge sub array arr[left.....mid] &
             // arr[mid+1....right]
-            if (mid < right)
-                merge(arr, left, mid, right);
+            if (mid < right){
+                merge(left, mid, right);
+            }
         }
     }
 }
-
-// Utility function to print the Array
-void printArray(vector<int>& arr)
-{
-    for (int elem : arr)
-        printf("%d ", elem);
-    printf("\n");
-}
-
 
 
 int main(int argc, char* argv[])
@@ -165,22 +181,21 @@ int main(int argc, char* argv[])
         perror("\nError: Wrong count (try  'integer'>=1)\n");
         exit(EXIT_FAILURE);
     }
-    int thread_count = atoi(argv[1]);
+    const int thread_count = atoi(argv[1]);
 
     // Input array
-    vector<int> arr;
     int tmp;
     printf("Type your array: ");
     while(scanf("%d", &tmp) > 0){
-        arr.push_back(tmp);
+        globe_vector.push_back(tmp);
     }
 
     // Function Call
-    timSort(arr, thread_count);
+    timSort(thread_count);
 
     // Results
-    printf("After Sorting Array is: ");
-    printArray(arr);
-    printf("Array size was %d\n", arr.size());
+    // printf("\nAfter Sorting globe Array is: ");
+    // printArray(globe_vector);
+    printf("\nArray size was %d\n", globe_vector.size());
     return 0;
 }
