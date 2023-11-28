@@ -186,7 +186,7 @@ int main(int argc, char* argv[])
     timSort(thread_count);
 
     // Results
-    printf("\nAfter Sorting globe Array is: ");
+    printf("\nAfter Sorting Array is: ");
     printArray(globe_vector);
     printf("\nArray size was %d\n", globe_vector.size());
     return 0;

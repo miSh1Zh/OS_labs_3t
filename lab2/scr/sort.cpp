@@ -551,3 +551,39 @@ int main(int argc, char* argv[])
 //     printf("\nArray size was %d\n", globe_vector.size());
 //     return 0;
 // }
+
+
+
+// Theoretical material
+
+// ## What is TimSort? 
+
+// Let’s consider the following array as an example: arr[] = {4, 2, 8, 6, 1, 5, 9, 3, 7}.
+
+// Step 1: Define the size of the run
+
+// Minimum run size: 32 (we’ll ignore this step since our array is small)
+// Step 2: Divide the array into runs
+
+// In this step, we’ll use insertion sort to sort the small subsequences (runs) within the array.
+// The initial array: [4, 2, 8, 6, 1, 5, 9, 3, 7]
+// No initial runs are present, so we’ll create runs using insertion sort.
+// Sorted runs: [2, 4], [6, 8], [1, 5, 9], [3, 7]
+// Updated array: [2, 4, 6, 8, 1, 5, 9, 3, 7]
+// Step 3: Merge the runs
+
+// In this step, we’ll merge the sorted runs using a modified merge sort algorithm.
+// Merge the runs until the entire array is sorted.
+// Merged runs: [2, 4, 6, 8], [1, 3, 5, 7, 9]
+// Updated array: [2, 4, 6, 8, 1, 3, 5, 7, 9]
+// Step 4: Adjust the run size
+
+// After each merge operation, we double the size of the run until it exceeds the length of the array.
+// The run size doubles: 32, 64, 128 (we’ll ignore this step since our array is small)
+// Step 5: Continue merging
+
+// Repeat the merging process until the entire array is sorted.
+// Final merged run: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// The final sorted array is [1, 2, 3, 4, 5, 6, 7, 8, 9].
+
+// C++ program to perform TimSort.
