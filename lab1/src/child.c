@@ -2,7 +2,7 @@
 #include "stdlib.h"
 #include "unistd.h"
 
-int main(){
+int main(){ 
     int c = '\0';
     int tmp = 0, res = 0;
     int end_of_str = 0;
