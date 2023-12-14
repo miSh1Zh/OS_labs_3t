@@ -4,8 +4,8 @@
 
 int contr = 1;
 
-const char* first_name = "prog1_s"; 
-const char* second_name = "prog2_s";
+const char* first_name = "liblib1_d.dylib"; 
+const char* second_name = "liblib2_d.dylib";
 
 
 void (*Sort)(int* arr, int n) = NULL;
