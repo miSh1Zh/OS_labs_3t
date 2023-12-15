@@ -4,6 +4,7 @@
 
 int contr = 1;
 
+// .dylib is for macOS only, check your's before execute
 const char* first_name = "liblib1_d.dylib"; 
 const char* second_name = "liblib2_d.dylib";
 
