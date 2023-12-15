@@ -188,6 +188,6 @@ int main(int argc, char* argv[])
     // Results
     printf("\nAfter Sorting Array is: ");
     printArray(globe_vector);
-    printf("\nArray size was %d\n", globe_vector.size());
+    printf("\nArray size was %ld\n", globe_vector.size());
     return 0;
 }
