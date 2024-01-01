@@ -1,5 +1,5 @@
 #include <iostream>
-#include "head.h"
+#include "top_node.h"
 #include <sys/time.h>
 #include "ze_mes_queue.h"
 #include <string>
@@ -7,7 +7,6 @@
 #include <sstream>
 
 #include <map>
-std::map<std::string, int> wiki_node;
 
 int main(int argc, char *argv[]){
     if (argc < 4){
@@ -48,7 +47,7 @@ int main(int argc, char *argv[]){
         else if(command == "exec"){
             std::string str;
             getline(request, str);
-            std::string answer = node.exec(str, wiki_node);
+            std::string answer = node.exec(str);
             send_message(node.parent, answer);
         }
         else if(command == "remove"){

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "head.h"
+#include "top_node.h"
 #include "ze_mes_queue.h"
 #include <sys/time.h>
 #include <string>
@@ -14,7 +14,7 @@ int main(){
     Tree tree;
     std::string answer;
     while(std::cin >> command){
-        if(command == "create"){
+        if(command == "create") {
             int child;
             std::cin >> child;
             if(tree.exist(child)){
@@ -43,7 +43,7 @@ int main(){
                 }
                 std::cout << answer << std::endl;
             }
-        } else if(command == "ping"){
+        } else if(command == "ping") {
             int child;
             std::cin >> child;
             if(!tree.exist(child)){
@@ -73,8 +73,7 @@ int main(){
                 answer = node.sendStr(message, child);
                 std::cout << answer << std::endl;
             }
-        }
-        else if(command == "remove"){
+        } else if(command == "remove"){
             int child;
             std::cin >> child;
             std::string message = "remove";
@@ -107,6 +106,8 @@ int main(){
             tree.Remove(tree.findId());
             treee.clear();
             break;
+        } else {
+            std::cout << "Try another command\n";
         }
     }
     return 0;

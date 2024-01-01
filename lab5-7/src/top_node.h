@@ -9,6 +9,7 @@
 class TNode{
     private:
         zmq::context_t context;
+        std::map<std::string, int> wiki_node;
     public:
         zmq::socket_t left, right, parent;
         
@@ -159,7 +160,7 @@ class TNode{
             return answer;
         }
 
-        std::string exec(std::string str, std::map<std::string, int>& wiki_node){
+        std::string exec(std::string str){
             std::istringstream command(str);
             std::string answer = "OK:" + std::to_string(id);
             std::string key; command >> key;
