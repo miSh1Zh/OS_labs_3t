@@ -67,7 +67,7 @@ int main(){
             std::cin >> child;
             getline(std::cin, str);
             if(!tree.exist(child)){
-                std::cout << "Error: child is not existed!\n";
+                std::cout << "Error: child does not exist!\n";
             }else{
                 std::string message = "exec " + str;
                 answer = node.sendStr(message, child);
@@ -78,7 +78,7 @@ int main(){
             std::cin >> child;
             std::string message = "remove";
             if(!tree.exist(child)){
-                std::cout << "Error: child is not existed!\n";
+                std::cout << "Error: child does not exist!\n";
             }else{
                 answer = node.sendStr(message, child);
                 treee.erase(std::remove(treee.begin(), treee.end(), child), treee.end());
@@ -106,8 +106,6 @@ int main(){
             tree.Remove(tree.findId());
             treee.clear();
             break;
-        } else {
-            std::cout << "Try another command\n";
         }
     }
     return 0;

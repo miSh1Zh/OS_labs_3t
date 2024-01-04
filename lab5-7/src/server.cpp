@@ -6,15 +6,13 @@
 #include "tree.h"
 #include <sstream>
 
-#include <map>
-
 int main(int argc, char *argv[]){
     if (argc < 4){
         printf("Usage: ./main childID parentPort parentID\n");
         exit(-1);
     }
     TNode node(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]));
-    while(true){
+    while(1){
         std::string message;
         std::string command;
         message = receive_message(node.parent);
@@ -34,14 +32,6 @@ int main(int argc, char *argv[]){
             int child;
             request >> child;
             std::string answer = node.createChild(child);
-            send_message(node.parent, answer);
-        }
-        else if(command == "send"){
-            int child;
-            std::string str;
-            request >> child;
-            getline(request, str);
-            std::string answer = node.sendStr(str, child);
             send_message(node.parent, answer);
         }
         else if(command == "exec"){
