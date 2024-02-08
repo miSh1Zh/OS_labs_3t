@@ -6,7 +6,7 @@
 #include <queue>
 #include <vector>
 
-const size_t MEM = 900000;
+const size_t MEM = 4000000;
 
 using namespace std;
 
@@ -18,55 +18,46 @@ int main(){
         test_blocks.push_back(t);
     }
 
-    cout << "Test blocks count: " << test_blocks.size() << endl;
-
-    Allocator All = createMemoryAllocator(MEM);
-    
-    queue<void*> Q;
+    // cout << "Test blocks count: " << test_blocks.size() << endl;
 
     auto begin = chrono::high_resolution_clock::now();
 
+    Allocator All(MEM);
+
+    auto end = chrono::high_resolution_clock::now();
+
+    // cout << "Init test time (microseconds): " << chrono::duration_cast<chrono::microseconds>(end - begin).count() << endl;
+    
+    queue<void*> Q;
+
+    begin = chrono::high_resolution_clock::now();
+
     size_t null_count = 0;
     for(auto elem : test_blocks){
-        void* tmp = alloc(All, elem);
+        void* tmp = All.alloc(elem);
+        // cout << tmp << endl;
         if(tmp == NULL) null_count++;
         else{
             Q.push(tmp);
         }
     }
 
-    // cout << Q.size() << endl;
+    end = chrono::high_resolution_clock::now();
 
-    auto end = chrono::high_resolution_clock::now();
-
-    cout << "Allocation test time: " << chrono::duration_cast<chrono::milliseconds>(end - begin).count() << endl;
+    cout << "Allocation test time (microseconds): " << chrono::duration_cast<chrono::microseconds>(end - begin).count() << endl;
 
     begin = chrono::high_resolution_clock::now();
 
     while(!Q.empty()){
-        free(All, Q.back());
+        All.free(Q.back());
         Q.pop();
     }
 
-    // cout << Q.size() << endl;
-
     end = chrono::high_resolution_clock::now();
 
-    cout << "Free test time: " << chrono::duration_cast<chrono::milliseconds>(end - begin).count() << endl;
+    cout << "Free test time (microseconds): " << chrono::duration_cast<chrono::microseconds>(end - begin).count() << endl;
 
     cout << "NULL count: " << null_count << endl;
-
-    
-    /////////////////////////////// malloc & free
-
-    // begin = chrono::high_resolution_clock::now();
-    // for(auto elem : test_blocks){
-    //     Q.push(malloc(elem));
-    // }
-    // end = chrono::high_resolution_clock::now();
-
-    // cout << "__________: " << chrono::duration_cast<chrono::microseconds>(end - begin).count() << endl;
-
 
     return 0;
 }

@@ -17,9 +17,11 @@ std::vector<size_t> pwrs = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
 
 
 
-struct Allocator{
+class Allocator{
+    private:
     std::map<size_t, std::vector<void*>> _free_blocks;
-
+    
+    public:
     Allocator(size_t memory_size){
         
         std::vector<size_t>  pwrs(MAX_POW + 1, 0);
@@ -78,41 +80,44 @@ struct Allocator{
             cur_block_size *= 2;
         }
     }
+
+    void* alloc(size_t block_size){
+        size_t power = ceil(log2(block_size));
+        power = std::max(power, MIN_POW);
+        while(power < MAX_POW and _free_blocks.find(power) == _free_blocks.end()){
+            power++;
+        }
+
+        void* res = NULL;
+        if(power <= MAX_POW and _free_blocks.find(power) != _free_blocks.end()){
+            if(!_free_blocks[power].empty()){
+                res = _free_blocks[power].back() + sizeof(size_t);
+                // std::cout << res << std::endl;
+                // std::cout << "Size of list " << power << " is " << allocator._free_blocks[power].size() << std::endl;
+                _free_blocks[power].pop_back();   
+            }
+        }
+        // else{
+        //     std::cerr << "No block with size of 'block_size'\n";
+        // }
+        return res;
+    }
+
+    void free(void* block){
+        if(block != NULL){
+            size_t* buf = (size_t*)block - 1;
+            size_t key = buf[0];
+            if(key >= MIN_POW or key <= MAX_POW or key%2 == 0){
+                _free_blocks[key].push_back(buf);
+            }
+            else{
+                std::cerr << "No permission to free the 'block'" << std::endl;
+            }
+        }
+    }
+
 };
 
-
-
-Allocator createMemoryAllocator(size_t memory_size){
-    return Allocator(memory_size);
-}
-void* alloc(Allocator allocator, size_t block_size){
-    size_t power = ceil(log2(block_size));
-    power = std::max(power, MIN_POW);
-    while(power < MAX_POW and allocator._free_blocks.find(power) == allocator._free_blocks.end()){
-        power++;
-    }
-
-    void* res = NULL;
-    if(power <= MAX_POW and allocator._free_blocks.find(power) != allocator._free_blocks.end()){
-        if(!allocator._free_blocks[power].empty()){
-            res = allocator._free_blocks[power].back() + sizeof(size_t);
-            allocator._free_blocks[power].pop_back();   
-        }
-    }
-    // else{
-    //     std::cerr << "No block with size of 'block_size'\n";
-    // }
-    return res;
-}
-void free(Allocator allocator, void* block){
-    if(block != NULL){
-        size_t* buf = (size_t*)block - 1;
-        size_t key = buf[0];
-        if(key >= MIN_POW or key <= MAX_POW or key%2 == 0){
-            allocator._free_blocks[key].push_back(buf);
-        }
-        else{
-            std::cerr << "No permission to free the 'block'" << std::endl;
-        }
-    }
-}
+// Allocator createMemoryAllocator(size_t memory_size){}
+// void* alloc(Allocator allocator, size_t block_size){}
+// void free(Allocator allocator, void* block){}
