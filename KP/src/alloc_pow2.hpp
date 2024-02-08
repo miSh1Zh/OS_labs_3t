@@ -39,13 +39,13 @@ class Allocator{
                 actual_buf = MIN_BLOCK;
             }
             
-            if(memory_size < actual_size + actual_buf + sizeof(size_t)) actual_max_power = power;
+            if(memory_size < actual_size + actual_buf) actual_max_power = power;
             else{
                 ++pwrs[power];
                 actual_size += actual_buf + sizeof(size_t);
             }
 
-            if(memory_size < actual_size + MIN_BLOCK + sizeof(size_t)) break;
+            if(memory_size < actual_size + MIN_BLOCK) break;
             
             power %= actual_max_power;
         }
@@ -65,7 +65,7 @@ class Allocator{
 
             while(pwrs[i]--){
                 size_t* tmp;
-                tmp = (size_t*)malloc(cur_block_size + sizeof(size_t));
+                tmp = (size_t*)malloc(cur_block_size);
                 if(tmp == NULL){
                     std::cerr << "malloc: error" << std::endl;
                     exit(1);
@@ -82,6 +82,7 @@ class Allocator{
     }
 
     void* alloc(size_t block_size){
+        block_size += sizeof(size_t);
         size_t power = ceil(log2(block_size));
         power = std::max(power, MIN_POW);
         while(power < MAX_POW and _free_blocks.find(power) == _free_blocks.end()){
