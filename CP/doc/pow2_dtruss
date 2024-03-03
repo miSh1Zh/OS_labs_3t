@@ -1,0 +1,325 @@
+dtrace: system integrity protection is on, some features will not be available
+SYSCALL(args) 		 = return
+Allocation test time (microseconds): 923
+Free test time (microseconds): 235
+NULL count: 0
+dtrace: error on enabled probe ID 1741 (ID 573: syscall::sysctl:return): invalid kernel access in action #10 at DIF offset 28
+dtrace: error on enabled probe ID 1741 (ID 573: syscall::sysctl:return): invalid kernel access in action #10 at DIF offset 28
+dtrace: error on enabled probe ID 1741 (ID 573: syscall::sysctl:return): invalid kernel access in action #10 at DIF offset 28
+dtrace: error on enabled probe ID 1741 (ID 573: syscall::sysctl:return): invalid kernel access in action #10 at DIF offset 28
+dtrace: error on enabled probe ID 1690 (ID 845: syscall::stat64:return): invalid address (0x0) in action #11 at DIF offset 12
+munmap(0x1153F7000, 0xA0000)		 = 0 0
+munmap(0x115497000, 0x8000)		 = 0 0
+munmap(0x11549F000, 0x4000)		 = 0 0
+munmap(0x1154A3000, 0x4000)		 = 0 0
+munmap(0x1154A7000, 0x58000)		 = 0 0
+open(".\0", 0x100000, 0x0)		 = 3 0
+fcntl(0x3, 0x32, 0x7FF7B33BA270)		 = 0 0
+close(0x3)		 = 0 close0
+fsgetpath(0x7FF7B33BA280, 0x400, 0x7FF7B33BA268)		 = 60 0
+fsgetpath(0x7FF7B33BA280, 0x400, 0x7FF7B33BA268)		 = 14 0
+csrctl(0x0, 0x7FF7B33BA68C, 0x4)		 = -1 1
+__mac_syscall(0x7FF815B08E3B, 0x2, 0x7FF7B33BA4F0)		 = 0 0
+csrctl(0x0, 0x7FF7B33BA69C, 0x4)		 = -1 1
+__mac_syscall(0x7FF815B05DC6, 0x5A, 0x7FF7B33BA630)		 = 0 0
+open("/\0", 0x20100000, 0x0)		 = 3 0
+openat(0x3, "System/Cryptexes/OS\0", 0x100000, 0x0)		 = 4 0
+dup(0x4, 0x0, 0x0)		 = 5 0
+fstatat64(0x4, 0x7FF7B33B93D1, 0x7FF7B33B97D0)		 = 0 0
+openat(0x4, "System/Library/dyld/\0", 0x100000, 0x0)		 = 6 0
+fcntl(0x6, 0x32, 0x7FF7B33B9460)		 = 0 0
+dup(0x6, 0x0, 0x0)		 = 7 0
+dup(0x5, 0x0, 0x0)		 = 8 0
+close(0x3)		 = 0 close0
+close(0x5)		 = 0 close0
+close(0x4)		 = 0 close0
+close(0x6)		 = 0 close0
+shared_region_check_np(0x7FF7B33B9D48, 0x0, 0x0)		 = 0 eck_np0
+fsgetpath(0x7FF7B33BA2B0, 0x400, 0x7FF7B33BA1E8)		 = 83 0
+fcntl(0x8, 0x32, 0x7FF7B33BA2B0)		 = 0 0
+close(0x8)		 = 0 close0
+close(0x7)		 = 0 close0
+getfsstat64(0x0, 0x0, 0x2)		 = 8 0
+getfsstat64(0x10D1020A0, 0x43C0, 0x2)		 = 8 0
+getattrlist("/\0", 0x7FF7B33BA1F0, 0x7FF7B33BA160)		 = 0 0
+stat64("/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_x86_64h\0", 0x7FF7B33BA528, 0x0)		 = 0 0
+stat64("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build/test\0", 0x7FF7B33B99C0, 0x0)		 = 0 0
+open("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build/test\0", 0x0, 0x0)		 = 3 0
+mmap(0x0, 0x22258, 0x1, 0x40002, 0x3, 0x0)		 = 0x10CB69000 0
+fcntl(0x3, 0x32, 0x7FF7B33B9AD0)		 = 0 0
+close(0x3)		 = 0 close0
+munmap(0x10CB69000, 0x22258)		 = 0 0
+stat64("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build/test\0", 0x7FF7B33B9F20, 0x0)		 = 0 0
+open("/usr/local/opt/gcc/lib/gcc/current/libstdc++.6.dylib\0", 0x0, 0x0)		 = 3 0
+fcntl(0x3, 0x32, 0x7FF7B33B9370)		 = 0 0
+close(0x3)		 = 0 close0
+stat64("/usr/local/opt/gcc/lib/gcc/current/libstdc++.6.dylib\0", 0x7FF7B33B8F30, 0x0)		 = 0 0
+stat64("/usr/local/opt/gcc/lib/gcc/current/libstdc++.6.dylib\0", 0x7FF7B33B8990, 0x0)		 = 0 0
+open("/usr/local/opt/gcc/lib/gcc/current/libstdc++.6.dylib\0", 0x0, 0x0)		 = 3 0
+mmap(0x0, 0x3C2770, 0x1, 0x40002, 0x3, 0x0)		 = 0x10D141000 0
+fcntl(0x3, 0x32, 0x7FF7B33B8AA0)		 = 0 0
+close(0x3)		 = 0 close0
+open("/usr/local/Cellar/gcc/13.2.0/lib/gcc/current/libstdc++.6.dylib\0", 0x0, 0x0)		 = 3 0
+fcntl(0x3, 0x62, 0x7FF7B33B8758)		 = 0 0
+mmap(0x10D504000, 0x1E4000, 0x5, 0x40012, 0x3, 0x0)		 = 0x10D504000 0
+mmap(0x10D6E8000, 0xC000, 0x3, 0x40012, 0x3, 0x1E4000)		 = 0x10D6E8000 0
+mmap(0x10D6F4000, 0xC000, 0x3, 0x40012, 0x3, 0x1F0000)		 = 0x10D6F4000 0
+mmap(0x10D704000, 0x1C8000, 0x1, 0x40012, 0x3, 0x1FC000)		 = 0x10D704000 0
+close(0x3)		 = 0 close0
+munmap(0x10D141000, 0x3C2770)		 = 0 0
+open("/usr/local/opt/gcc/lib/gcc/current/libgcc_s.1.1.dylib\0", 0x0, 0x0)		 = 3 0
+fcntl(0x3, 0x32, 0x7FF7B33B9370)		 = 0 0
+close(0x3)		 = 0 close0
+stat64("/usr/local/opt/gcc/lib/gcc/current/libgcc_s.1.1.dylib\0", 0x7FF7B33B8F30, 0x0)		 = 0 0
+stat64("/usr/local/opt/gcc/lib/gcc/current/libgcc_s.1.1.dylib\0", 0x7FF7B33B8990, 0x0)		 = 0 0
+open("/usr/local/opt/gcc/lib/gcc/current/libgcc_s.1.1.dylib\0", 0x0, 0x0)		 = 3 0
+mmap(0x0, 0x2D310, 0x1, 0x40002, 0x3, 0x0)		 = 0x10CB69000 0
+fcntl(0x3, 0x32, 0x7FF7B33B8AA0)		 = 0 0
+close(0x3)		 = 0 close0
+open("/usr/local/Cellar/gcc/13.2.0/lib/gcc/current/libgcc_s.1.1.dylib\0", 0x0, 0x0)		 = 3 0
+fcntl(0x3, 0x62, 0x7FF7B33B8778)		 = 0 0
+mmap(0x10CB97000, 0x1C000, 0x5, 0x40012, 0x3, 0x4000)		 = 0x10CB97000 0
+mmap(0x10CBB3000, 0x4000, 0x3, 0x40012, 0x3, 0x20000)		 = 0x10CBB3000 0
+mmap(0x10CBB7000, 0xC000, 0x1, 0x40012, 0x3, 0x24000)		 = 0x10CBB7000 0
+close(0x3)		 = 0 close0
+munmap(0x10CB69000, 0x2D310)		 = 0 0
+stat64("/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B8F30, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B8EE0, 0x0)		 = -1 2
+stat64("/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B8F30, 0x0)		 = -1 2
+stat64("/usr/lib/libobjc.A.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libobjc.A.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/libobjc.A.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_blocks.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_blocks.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_blocks.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libxpc.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libxpc.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libxpc.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_trace.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_trace.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_trace.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcorecrypto.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libcorecrypto.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcorecrypto.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_malloc.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_malloc.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_malloc.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libdispatch.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libdispatch.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libdispatch.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_featureflags.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_featureflags.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_featureflags.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_c.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_c.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_c.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/libc++.1.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libc++.1.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/libc++.1.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/libc++abi.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libc++abi.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/libc++abi.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libdyld.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libdyld.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libdyld.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_info.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_info.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_info.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_darwin.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_darwin.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_darwin.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_notify.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_notify.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_notify.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_networkextension.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_networkextension.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_networkextension.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_asl.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_asl.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_asl.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_symptoms.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_symptoms.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_symptoms.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_containermanager.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_containermanager.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_containermanager.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_configuration.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_configuration.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_configuration.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_sandbox.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_sandbox.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_sandbox.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libquarantine.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libquarantine.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libquarantine.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_coreservices.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_coreservices.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_coreservices.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_m.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_m.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_m.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libmacho.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libmacho.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libmacho.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcommonCrypto.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libcommonCrypto.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcommonCrypto.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libunwind.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libunwind.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libunwind.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/liboah.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/liboah.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/liboah.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcopyfile.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libcopyfile.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcopyfile.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcompiler_rt.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libcompiler_rt.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcompiler_rt.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_collections.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_collections.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_collections.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_secinit.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_secinit.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_secinit.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libremovefile.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libremovefile.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libremovefile.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libkeymgr.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libkeymgr.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libkeymgr.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_dnssd.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_dnssd.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_dnssd.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcache.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libcache.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/system/libcache.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B6B30, 0x0)		 = -1 2
+stat64("/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_darwindirectory.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/system/libsystem_darwindirectory.dylib\0", 0x7FF7B33B6B20, 0x0)		 = -1 2
+stat64("/usr/lib/system/libsystem_darwindirectory.dylib\0", 0x7FF7B33B6B80, 0x0)		 = -1 2
+stat64("/usr/lib/libiconv.2.dylib\0", 0x7FF7B33B8E50, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libiconv.2.dylib\0", 0x7FF7B33B8E00, 0x0)		 = -1 2
+stat64("/usr/lib/libiconv.2.dylib\0", 0x7FF7B33B8E50, 0x0)		 = -1 2
+stat64("/usr/lib/libcharset.1.dylib\0", 0x7FF7B33B6AA0, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libcharset.1.dylib\0", 0x7FF7B33B6A50, 0x0)		 = -1 2
+stat64("/usr/lib/libcharset.1.dylib\0", 0x7FF7B33B6AA0, 0x0)		 = -1 2
+stat64("/usr/lib/libiconv.2.dylib\0", 0x7FF7B33B6AA0, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libiconv.2.dylib\0", 0x7FF7B33B6A50, 0x0)		 = -1 2
+stat64("/usr/lib/libiconv.2.dylib\0", 0x7FF7B33B6AA0, 0x0)		 = -1 2
+open("@rpath/libgcc_s.1.1.dylib\0", 0x0, 0x0)		 = -1 2
+open("@rpath\0", 0x100000, 0x0)		 = -1 2
+stat64("/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B8E50, 0x0)		 = -1 2
+stat64("/System/Volumes/Preboot/Cryptexes/OS/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B8E00, 0x0)		 = -1 2
+stat64("/usr/lib/libSystem.B.dylib\0", 0x7FF7B33B8E50, 0x0)		 = -1 2
+open("/dev/dtracehelper\0", 0x2, 0x0)		 = 3 0
+ioctl(0x3, 0x80086804, 0x7FF7B33B89B8)		 = 0 0
+close(0x3)		 = 0 close0
+open("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build/test\0", 0x0, 0x0)		 = 3 0
+__mac_syscall(0x7FF815B08E3B, 0x2, 0x7FF7B33B8090)		 = 0 0
+map_with_linking_np(0x7FF7B33B7620, 0x1, 0x7FF7B33B7650)		 = -1 _np22
+close(0x3)		 = 0 close0
+mprotect(0x10CB51000, 0x4000, 0x1)		 = 0 0
+open("/usr/local/Cellar/gcc/13.2.0/lib/gcc/current/libstdc++.6.dylib\0", 0x0, 0x0)		 = 3 0
+__mac_syscall(0x7FF815B08E3B, 0x2, 0x7FF7B33B8090)		 = 0 0
+map_with_linking_np(0x7FF7B33B51F0, 0x2, 0x7FF7B33B5240)		 = -1 _np22
+close(0x3)		 = 0 close0
+mprotect(0x10D6E8000, 0xC000, 0x1)		 = 0 0
+shared_region_check_np(0xFFFFFFFFFFFFFFFF, 0x0, 0x0)		 = 0 eck_np0
+mprotect(0x10D100000, 0x40000, 0x1)		 = 0 0
+access("/AppleInternal/XBS/.isChrooted\0", dtrace: error on enabled probe ID 1741 (ID 573: syscall::sysctl:return): invalid kernel access in action #10 at DIF offset 28
+dtrace: error on enabled probe ID 1741 (ID 573: syscall::sysctl:return): invalid kernel access in action #10 at DIF offset 28
+dtrace: error on enabled probe ID 1714 (ID 961: syscall::read_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+dtrace: error on enabled probe ID 1714 (ID 961: syscall::read_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+dtrace: error on enabled probe ID 1714 (ID 961: syscall::read_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+dtrace: error on enabled probe ID 1712 (ID 963: syscall::write_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+dtrace: error on enabled probe ID 1712 (ID 963: syscall::write_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+dtrace: error on enabled probe ID 1712 (ID 963: syscall::write_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+0x0, 0x0)		 = -1 2
+bsdthread_register(0x7FF815DFBB9C, 0x7FF815DFBB88, 0x2000)		 = 1073742303 er0
+getpid(0x0, 0x0, 0x0)		 = 25679 0
+shm_open(0x7FF815C9EF42, 0x0, 0x15C9D388)		 = 3 0
+fstat64(0x3, 0x7FF7B33B9000, 0x0)		 = 0 0
+mmap(0x0, 0x4000, 0x1, 0x40001, 0x3, 0x0)		 = 0x10CB6B000 0
+close(0x3)		 = 0 close0
+ioctl(0x2, 0x4004667A, 0x7FF7B33B90C4)		 = -1 25
+ioctl(0x2, 0x40487413, 0x7FF7B33B90C8)		 = -1 25
+mprotect(0x10CB74000, 0x1000, 0x0)		 = 0 0
+mprotect(0x10CB7B000, 0x1000, 0x0)		 = 0 0
+mprotect(0x10CB7C000, 0x1000, 0x0)		 = 0 0
+mprotect(0x10CB83000, 0x1000, 0x0)		 = 0 0
+mprotect(0x10CB6F000, 0x98, 0x1)		 = 0 0
+mprotect(0x10CB6F000, 0x98, 0x3)		 = 0 0
+mprotect(0x10CB6F000, 0x98, 0x1)		 = 0 0
+mprotect(0x10CB84000, 0x1000, 0x1)		 = 0 0
+mprotect(0x10CB85000, 0x98, 0x1)		 = 0 0
+mprotect(0x10CB85000, 0x98, 0x3)		 = 0 0
+mprotect(0x10CB85000, 0x98, 0x1)		 = 0 0
+mprotect(0x10CB6F000, 0x98, 0x3)		 = 0 0
+mprotect(0x10CB6F000, 0x98, 0x1)		 = 0 0
+mprotect(0x10CB84000, 0x1000, 0x3)		 = 0 0
+mprotect(0x10CB84000, 0x1000, 0x1)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x3)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x1)		 = 0 0
+issetugid(0x0, 0x0, 0x0)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x3)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x1)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x3)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x1)		 = 0 0
+getattrlist("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/doc/../src/build/test\0", 0x7FF7B33B8FA0, 0x7FF7B33B8FB8)		 = 0 0
+access("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build\0", 0x4, 0x0)		 = 0 0
+open("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build\0", 0x0, 0x0)		 = 3 0
+fstat64(0x3, 0x7FB4C0704530, 0x0)		 = 0 0
+csrctl(0x0, 0x7FF7B33B91FC, 0x4)		 = -1 1
+fgetattrlist(0x3, 0x7FF7B33B9210, 0x7FF7B33B9230)		 = 0 0
+__mac_syscall(0x7FF8211BC6A4, 0x2, 0x7FF7B33B9230)		 = 0 0
+fcntl(0x3, 0x32, 0x7FF7B33B8EB0)		 = 0 0
+close(0x3)		 = 0 close0
+open("/Users/mishazhadnov/Desktop/wD/OS_labs_3t/KP/src/build/Info.plist\0", 0x0, 0x0)		 = -1 2
+proc_info(0x2, 0x644F, 0xD)		 = 64 0
+csops_audittoken(0x644F, 0x10, 0x7FF7B33B9200)		 = -1 22
+csops(0x644F, 0x0, 0x7FF7B33B9664)		 = 0 0
+sysctlbyname(kern.system_version_compat, 0x1A, 0x0, 0x0, 0x7FF7B33B9694)		 = 0 0
+mprotect(0x10D100000, 0x40000, 0x3)		 = 0 0
+getrlimit(0x1008, 0x7FF7B33BA430, 0x0)		 = 0 0
+fstat64(0x0, 0x7FF7B33BA418, 0x0)		 = 0 0
+fstat64(0x1, 0x7FF7B33BA398, 0x0)		 = 0 0
+
+CALL                                        COUNT
+bsdthread_register                              1
+csops                                           1
+csops_audittoken                                1
+exit                                            1
+fgetattrlist                                    1
+fstatat64                                       1
+getpid                                          1
+getrlimit                                       1
+issetugid                                       1
+proc_info                                       1
+shm_open                                        1
+sysctlbyname                                    1
+access                                          2
+getattrlist                                     2
+getfsstat64                                     2
+map_with_linking_np                             2
+openat                                          2
+shared_region_check_np                          2
+csrctl                                          3
+dup                                             3
+fsgetpath                                       3
+ioctl                                           3
+read_nocancel                                   3
+write_nocancel                                  3
+fstat64                                         4
+__mac_syscall                                   5
+sysctl                                          6
+munmap                                          8
+fcntl                                          11
+mmap                                           11
+open                                           16
+close                                          19
+mprotect                                       25
+stat64                                        137
+
